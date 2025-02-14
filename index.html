@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Especial</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Zain:wght@200;300;400;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background"></div>
+    <audio id="music" controls autoplay>
+        <source src="katiabb/Music.mp3" type="audio/mp3">
+        Tu navegador no soporta la etiqueta de audio.
+    </audio>
+    <div class="container">
+        <h1 class="fade-in" id="ini">¡Hola, mi amor!</h1>
+        <p id="pol">Holis mi princesa. Te hago esta invitación para que pueda ser tu cita este 14 de febrero y que 
+            podamos escoger que haremos juntos.
+            Si tienes alguna sugerencia o quieres hacer algo más, dime, quiero que te sientas feliz y comoda.
+            También, te dejo algunas de mis fotos favoritas de nosotros para que no olvides cuanto te amo.</p>
+        <p id="tuy">Siempre tuyo, <strong>Luna</strong>.</p>
+
+        <p class="fade-in" id="cho">Elige qué te gustaría comer o hacer en nuestra cita:</p>
+        <div class="options">
+            <button class="food-btn" data-food="Ramen/Sushi">Ramen/Sushi</button>
+            <button class="food-btn" data-food="Hamburguesas/Pizza/Variado">Hamburguesas/Pizza/Variado</button>
+            <button class="food-btn" data-food="Postres/Café">Postres/Café</button>
+            <button class="food-btn" data-food="Noche de Pelis">Noche de Pelis</button>
+            <button class="food-btn" data-food="Dormir">Dormir juntos</button>
+        </div>
+        <button id="confirm-btn">Confirmar Cita</button>
+    </div>
+    
+    <div class="gallery">
+        <h2 id="gal">Galería de nosotros</h2>
+        <div class="gallery-grid">
+            <img src="katiabb/imagen1bb.jpeg" alt="Imagen 1">
+            <img src="katiabb/imagen2bb.jpeg" alt="Imagen 2">
+            <img src="katiabb/imagen3bb.jpeg" alt="Imagen 3">
+            <img src="katiabb/imagen4bb.jpeg" alt="Imagen 4">
+            <img src="katiabb/imagen5bb.jpeg" alt="Imagen 5">
+            <img src="katiabb/imagen6bb.jpeg" alt="Imagen 6">
+            <img src="katiabb/imagen7bb.jpeg" alt="Imagen 7">
+            <img src="katiabb/love.jpeg" alt="Imagen 8">
+        </div>
+    </div>
+
+    <!-- Reproductor de música -->
+   
+
+    <script>
+        $(document).ready(function() {
+            // Fade-in effect for the entire page
+            $("body").css({opacity: 0}).animate({opacity: 1}, 2000);
+            
+            $(".container").css({opacity: 0, transform: "scale(0.8)"}).animate({opacity: 1, transform: "scale(1)"}, 1500);
+            
+            let selectedFood = "";
+            
+            $(".food-btn").click(function() {
+                selectedFood = $(this).data("food");
+                $(this).addClass("selected").siblings().removeClass("selected");
+            });
+
+            $("#confirm-btn").click(function() {
+                if (!selectedFood) {
+                    alert("Por favor, elige una opción de comida");
+                    return;
+                }
+                let userNumber = "+52 5630715885";
+                let userMessage = `Holis bb, escogí que comeremos ${selectedFood}`;
+                
+                window.open(`https://api.whatsapp.com/send?phone=${userNumber}&text=${encodeURIComponent(userMessage)}`);
+            });
+        });
+    </script>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #ffe6f2;
+        transition: background 1s ease-in-out;
+        opacity: 0; /* Initial opacity for fade-in effect */
+    }
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("carpetabb/tulipanes.jpg") no-repeat center center/cover;
+        z-index: -1;
+        opacity: 0.8;
+    }
+    .container {
+        margin-top: 30px;
+    }
+    .fade-in {
+        opacity: 0;
+        animation: fadeIn 2s forwards;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .food-btn {
+        margin: 10px;
+        padding: 15px 30px; /* Increased padding for bigger buttons */
+        font-size: 18px; /* Adjusted font size for consistency */
+        cursor: pointer;
+        border: 2px solid white;
+        background-color: transparent;
+        color: white;
+        transition: transform 0.3s, background-color 0.3s, border 0.3s;
+    }
+    .food-btn:hover {
+        transform: scale(1.1);
+        background-color: #ff99cc;
+        border-color: #ff99cc;
+    }
+    .selected {
+        background-color: #ff6699;
+        color: white;
+    }
+    #ini{
+        font-family: "Crimson Text", serif;
+        font-size: 100px;
+        color: white;
+    }
+    #pol{
+        font-family: "Crimson Text", serif;
+        font-weight: 400;
+        font-style: normal;
+        color: white;
+        font-size: 30px;
+    }
+    #tuy{
+        font-family: "Crimson Text", serif;
+        font-weight: 400;
+        font-style: normal;
+        color: white;
+        font-size: 30px;
+    }
+    #cho{
+        font-family: "Lexend Deca", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        color: white;
+        font-size: 30px;
+    }
+    #gal{
+        font-family: "Lexend Deca", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        color: white;
+        font-size: 60px;
+    }
+    #confirm-btn {
+        padding: 15px 30px; /* Increased padding for consistency */
+        font-size: 18px;
+        cursor: pointer;
+        background-color: #ff3366;
+        color: white;
+        border: 2px solid white;
+        transition: transform 0.3s ease;
+    }
+    
+    #confirm-btn:hover {
+        transform: scale(1.1);
+        background-color: #ff6699;
+        border-color: #ff6699;
+    }
+    .gallery {
+        margin-top: 30px;
+    }
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        max-width: 90%;
+        margin: auto;
+    }
+    .gallery-grid img {
+        width: 100%;
+        height: 250px;  /* Altura fija para todas las imágenes */
+        object-fit: cover;  /* Asegura que las imágenes se recorten sin distorsión */
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+    .gallery-grid img:hover {
+        transform: scale(1.1);
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 1200px) {
+        .gallery-grid {
+            grid-template-columns: repeat(3, 1fr); /* 3 items per row for large tablets */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 items per row for tablets */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .gallery-grid {
+            grid-template-columns: 1fr; /* 1 item per row for mobile devices */
+        }
+        #ini {
+            font-size: 50px;
+        }
+        #pol, #tuy {
+            font-size: 20px;
+        }
+        .food-btn {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+    }
+</style>
